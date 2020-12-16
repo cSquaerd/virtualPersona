@@ -2,6 +2,8 @@
 ### A Streaming Utility
 ### Written by Charlie Cook
 
+![Banner](./readmeBanner.png)
+
 ## Description
 This program detects the volume level of your system's main input audio stream (usually a microphone) with the `sounddevice` module, and uses it to animate user-generated frames of an avatar of the user.
 Six total frames can be provided to the program: One smiling, one vocalizing an "Ah" sound, and one vocalizing and "Oh" sound, with two groups of these, either with eyes open or eyes blinking.
