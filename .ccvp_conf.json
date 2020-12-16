@@ -1,0 +1,14 @@
+{
+    "imageNames": {
+        "OpenSmile": "/home/charlie/Nextcloud/art/thegnarly-OSgnarly.png",
+        "OpenAh": "/home/charlie/Nextcloud/art/thegnarly-OAgnarly.png",
+        "OpenOh": "/home/charlie/Nextcloud/art/thegnarly-OOgnarly.png",
+        "BlinkSmile": "/home/charlie/Nextcloud/art/thegnarly-BSgnarly.png",
+        "BlinkAh": "/home/charlie/Nextcloud/art/thegnarly-BAgnarly.png",
+        "BlinkOh": "/home/charlie/Nextcloud/art/thegnarly-BOgnarly.png"
+    },
+    "threshold": 3.5,
+    "samples": 24,
+    "wobble": 0.08,
+    "blink": 0.005
+}
