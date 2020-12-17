@@ -220,9 +220,15 @@ class personaView(tk.Toplevel):
 		)
 # Global handle for the View Window
 personaViewHandle = None
-# View Toggle Button function
-def openPersonaView():
-	# See if we have all image files
+# Image Loading Function
+def loadImages(override = False):
+	global personaViewHandle
+	if override and personaViewHandle != None:
+		try:
+			if personaViewHandle.state() == "normal":
+				return
+		except tk.TclError:
+			pass
 	for frame in imageNames.keys():
 		try:
 			#print(frame, imageNames[frame].get())
@@ -232,7 +238,7 @@ def openPersonaView():
 					"Frame " + frame + " has no image set yet, please set it."
 				)
 				return
-			elif frame not in images.keys():
+			elif override or frame not in images.keys():
 				#print("Setting Frame " + frame)
 				images[frame] = tk.PhotoImage(file = imageNames[frame].get())
 		except tk.TclError:
@@ -241,6 +247,10 @@ def openPersonaView():
 				"No image can be found for the " + frame + " frame, please set it."
 			)
 			return
+# View Toggle Button function
+def openPersonaView():
+	# See if we have all image files
+	loadImages()
 	
 	global personaViewHandle
 	# Only one instance of the View can be active, make sure this is so
@@ -259,6 +269,11 @@ def openPersonaView():
 viewButton = tk.Button(
 	controls, text = "View Persona",
 	command = openPersonaView
+)
+# Image Override Reload Button
+reloadButton = tk.Button(
+	controls, text = "Reload Images",
+	command = lambda : loadImages(True)
 )
 
 # Microphone listening toggle function
@@ -405,12 +420,13 @@ blinkSlider.grid(
 	sticky = tk.W
 )
 micButton.grid(
-	row = 7, column = 5,
+	row = 6, column = 6,
 	sticky = tk.S
 )
 
 frameOS.grid(
 	row = 0, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelOS.grid(row = 0, column = 0)
@@ -418,6 +434,7 @@ buttonOS.grid(row = 1, column = 0)
 
 frameOA.grid(
 	row = 1, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelOA.grid(row = 0, column = 0)
@@ -425,6 +442,7 @@ buttonOA.grid(row = 1, column = 0)
 
 frameOO.grid(
 	row = 2, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelOO.grid(row = 0, column = 0)
@@ -432,6 +450,7 @@ buttonOO.grid(row = 1, column = 0)
 
 frameBS.grid(
 	row = 3, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelBS.grid(row = 0, column = 0)
@@ -439,6 +458,7 @@ buttonBS.grid(row = 1, column = 0)
 
 frameBA.grid(
 	row = 4, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelBA.grid(row = 0, column = 0)
@@ -446,6 +466,7 @@ buttonBA.grid(row = 1, column = 0)
 
 frameBO.grid(
 	row = 5, column = 5,
+	columnspan = 2,
 	sticky = tk.N, padx = 4, pady = 4
 )
 labelBO.grid(row = 0, column = 0)
@@ -454,6 +475,10 @@ buttonBO.grid(row = 1, column = 0)
 viewButton.grid(
 	row = 6, column = 5,
 	sticky = tk.S
+)
+reloadButton.grid(
+	row = 7, column = 5,
+	columnspan = 2
 )
 # Variable Initialization
 sampleSlider.set(20)
